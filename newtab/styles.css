@@ -1,0 +1,19 @@
+body, html {
+  height: 100%;
+}
+.bg {
+  /* The image used */
+  background-image: url("https://source.unsplash.com/random/1920x1080/?landscape,water,nature");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.the-main{
+  background-color: rgba(245, 245, 245, 1);
+  opacity: .8;
+}
