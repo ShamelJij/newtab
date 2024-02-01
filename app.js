@@ -17,18 +17,18 @@ $(function () {
   });
 });
 */
-function fetchAndDisplayXML(url) {
-  fetch(url)
-    .then((response) => response.text())
-    .then((data) => {
-      var parser = new DOMParser();
-      var xmlDoc = parser.parseFromString(data, "text/xml");
-      displayTable(xmlDoc);
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
-}
+const apiUrl = "https://militarywatchmagazine.com/feeds/headlines.xml";
+const corsProxyUrl = "https://cors-anywhere.herokuapp.com/";
+
+fetch(corsProxyUrl + apiUrl)
+  .then((response) => response.text())
+  .then((data) => {
+    // Process the data
+    console.log(data);
+  })
+  .catch((error) => {
+    console.error("Error fetching data:", error);
+  });
 
 // Function to create and display table from XML data
 function displayTable(xmlDoc) {
