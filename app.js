@@ -1,34 +1,16 @@
-/*
-$(function () {
-  // Use jQuery UI autocomplete on the search input
-  $("#searchInput").autocomplete({
-    source: function (request, response) {
-      // Use Google's suggestion API endpoint
-      $.ajax({
-        url: "https://suggestqueries.google.com/complete/search",
-        data: { q: request.term },
-        dataType: "jsonp",
-        success: function (data) {
-          response(data[1]); // Extract suggestions from the response
-        },
-      });
-    },
-    minLength: 1, // Minimum characters before triggering suggestions
-  });
-});
-*/
-const apiUrl = "https://militarywatchmagazine.com/feeds/headlines.xml";
-const corsProxyUrl = "https://cors-anywhere.herokuapp.com/";
-
-fetch(corsProxyUrl + apiUrl)
-  .then((response) => response.text())
-  .then((data) => {
-    // Process the data
-    console.log(data);
-  })
-  .catch((error) => {
-    console.error("Error fetching data:", error);
-  });
+// Function to fetch and parse XML data
+function fetchAndDisplayXML() {
+  fetch("proxy.php") // Use your PHP file as the proxy
+    .then((response) => response.text())
+    .then((data) => {
+      var parser = new DOMParser();
+      var xmlDoc = parser.parseFromString(data, "text/xml");
+      displayTable(xmlDoc);
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+}
 
 // Function to create and display table from XML data
 function displayTable(xmlDoc) {
@@ -55,4 +37,4 @@ function displayTable(xmlDoc) {
 }
 
 // Fetch and display the XML data
-fetchAndDisplayXML("https://militarywatchmagazine.com/feeds/headlines.xml");
+fetchAndDisplayXML();
