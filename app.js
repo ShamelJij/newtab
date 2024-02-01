@@ -1,8 +1,12 @@
 // Function to fetch and parse XML data
 function fetchAndDisplayXML() {
-  fetch("proxy.php") // Use your PHP file as the proxy
+  const corsProxyUrl = "https://cors.bridged.cc/";
+  const targetUrl = "https://militarywatchmagazine.com/feeds/headlines.xml";
+
+  fetch(corsProxyUrl + targetUrl)
     .then((response) => response.text())
     .then((data) => {
+      console.log("XML Response:", data);
       var parser = new DOMParser();
       var xmlDoc = parser.parseFromString(data, "text/xml");
       displayTable(xmlDoc);
