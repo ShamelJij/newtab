@@ -1,6 +1,7 @@
 const militaryWatchMagazine =
   "https://militarywatchmagazine.com/feeds/headlines.xml";
 const militaryWatchMagazineTableID = "militaryWatchMagazine-table-container";
+const defenseBlog = "https://defence-blog.com/feed/";
 
 const redditNews = "https://www.reddit.com/r/worldnews/.rss";
 const redditNewsTableID = "reddit-table-container";
@@ -9,7 +10,11 @@ const redditNewsTableID = "reddit-table-container";
 function fetchAndDisplayXML(targetUrl, tableID) {
   const corsProxyUrl = "https://cors-anywhere.herokuapp.com/";
 
-  fetch(corsProxyUrl + targetUrl)
+  fetch(corsProxyUrl + targetUrl, {
+    headers: {
+      "x-requested-with": "XMLHTTPREQUEST",
+    },
+  })
     .then((response) => response.text())
     .then((data) => {
       var parser = new DOMParser();
