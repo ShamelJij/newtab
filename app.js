@@ -13,6 +13,8 @@ function fetchAndDisplayXML(targetUrl, tableID) {
   fetch(corsProxyUrl + targetUrl, {
     headers: {
       "x-requested-with": "XMLHTTPREQUEST",
+      "Access-Control-Allow-Origin": "*", // Adjust as needed
+      "Content-Type": "text/xml",
     },
   })
     .then((response) => response.text())
