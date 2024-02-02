@@ -1,15 +1,33 @@
+const militaryWatchMagazine =
+  "https://militarywatchmagazine.com/feeds/headlines.xml";
+const militaryWatchMagazineTableID = "militaryWatchMagazine-table-container";
+
+const redditNews = "https://www.reddit.com/r/worldnews/.rss";
+const redditNewsTableID = "reddit-table-container";
+
 // Function to fetch and parse XML data
-function fetchAndDisplayXML() {
-  const corsProxyUrl = "https://cors.bridged.cc/";
-  const targetUrl = "https://militarywatchmagazine.com/feeds/headlines.xml";
+function fetchAndDisplayXML(targetUrl, tableID) {
+  const corsProxyUrl = "https://cors-anywhere.herokuapp.com/";
 
   fetch(corsProxyUrl + targetUrl)
     .then((response) => response.text())
     .then((data) => {
-      console.log("XML Response:", data);
       var parser = new DOMParser();
       var xmlDoc = parser.parseFromString(data, "text/xml");
-      displayTable(xmlDoc);
+      displayTable(xmlDoc, tableID);
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+}
+
+function fetchAndDisplayXMLred(targetUrl, tableID) {
+  fetch(targetUrl)
+    .then((response) => response.text())
+    .then((data) => {
+      var parser = new DOMParser();
+      var xmlDoc = parser.parseFromString(data, "text/xml");
+      displayTable(xmlDoc, tableID);
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
@@ -17,28 +35,22 @@ function fetchAndDisplayXML() {
 }
 
 // Function to create and display table from XML data
-function displayTable(xmlDoc) {
+function displayTable(xmlDoc, tableID) {
   var items = xmlDoc.querySelectorAll("item");
-  var tableHTML = "<table>";
-  tableHTML += "<tr><th>Title</th><th>Link</th><th>Published Date</th></tr>";
+  var tableHTML = "<table class='table table-striped'>";
 
-  items.forEach((item) => {
-    var title = item.querySelector("title").textContent;
-    var link = item.querySelector("link").textContent;
-    var pubDate = item.querySelector("pubDate").textContent;
-
-    tableHTML += "<tr>";
-    tableHTML += "<td>" + title + "</td>";
-    tableHTML +=
-      '<td><a href="' + link + '" target="_blank">' + link + "</a></td>";
-    tableHTML += "<td>" + pubDate + "</td>";
-    tableHTML += "</tr>";
-  });
+  // Loop through the first 5 items
+  for (var i = 1; i < Math.min(6, items.length); i++) {
+    var title = items[i].querySelector("title").textContent;
+    tableHTML += "<tr><td>" + title + "</td></tr>";
+    console.log("XML Response:", title, i);
+  }
 
   tableHTML += "</table>";
 
-  document.getElementById("table-container").innerHTML = tableHTML;
+  document.getElementById(tableID).innerHTML = tableHTML;
 }
 
 // Fetch and display the XML data
-fetchAndDisplayXML();
+fetchAndDisplayXML(militaryWatchMagazine, militaryWatchMagazineTableID);
+fetchAndDisplayXMLred(redditNews, redditNewsTableID);
