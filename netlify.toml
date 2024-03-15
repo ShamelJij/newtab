@@ -1,2 +1,8 @@
 [build]
-  publish = "public"
+  command = "npm run build" # Your build command, if needed
+  functions = "functions"   # Directory containing Netlify Functions, if any
+  publish = "public"        # Your publish directory for static files
+
+[dev]
+  command = "npm run dev"   # Your development server command
+
