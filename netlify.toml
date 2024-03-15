@@ -1,8 +1,12 @@
 [build]
-  publish = "public"        # Your publish directory for static files
-  #functions = "functions"   # Directory containing Netlify Functions, if any
-  #command = "npm run build" #Your build command, if needed
-#
-[dev]
-  command = "npm run dev"   # Your development server command
+  publish = "public"
+  functions = "functions"
+  command = "npm run build"
 
+[build.environment]
+  API_URL = "http://localhost:3000"
+
+[dev]
+  command = "npm run dev"
+  targetPort = 3000
+  proxyPort = 8888
