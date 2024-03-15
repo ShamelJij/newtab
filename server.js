@@ -11,7 +11,7 @@ app.use(cors());
 
 // Set the 'x-content-type-options' header for all routes
 app.use((req, res, next) => {
-  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Content-Type-Options", "*");
   next();
 });
 
