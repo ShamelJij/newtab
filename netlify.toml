@@ -1,6 +1,11 @@
 [build]
-  # Command to build the frontend files (if needed) and start the backend server
-  command = "npm run build && npm start"
+  # Command to build the frontend files (if needed)
+  command = "npm run build"
 
   # Directory where your frontend files are located
   publish = "public" # Replace "public" with the directory containing your frontend files
+
+# Optional: If needed, configure settings for the development server
+[dev]
+  # Command to start the development server
+  command = "npm start"
