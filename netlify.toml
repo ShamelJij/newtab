@@ -1,3 +1,3 @@
 [build]
-  command = "npm run build" # if needed
+  command = "npm start" # if needed
   publish = "public" # or the directory where your frontend files are located
