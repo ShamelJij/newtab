@@ -5,10 +5,3 @@
 
 [dev]
   command = "npm run dev"
-  targetPort = 3000
-  proxyPort = 8888
-
-[[headers]]
-  for = "/api/rss"
-  [headers.values]
-    Content-Type = "text/xml"
