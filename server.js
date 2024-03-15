@@ -6,7 +6,15 @@ import cors from "cors";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Enable CORS for all routes
 app.use(cors());
+
+// Set the 'x-content-type-options' header for all routes
+app.use((req, res, next) => {
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  next();
+});
+
 app.use(express.static("public"));
 app.get("/api/rss", async (req, res) => {
   try {
