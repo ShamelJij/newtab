@@ -23,7 +23,7 @@ app.get("/api/rss", async (req, res) => {
     console.error("Error fetching or parsing RSS feed:", error);
     res.status(500).send("Error fetching or parsing RSS feed");
   }
-
+  /*
   try {
     const response = await fetch(
       "https://militarywatchmagazine.com/feeds/headlines.xml"
@@ -38,6 +38,7 @@ app.get("/api/rss", async (req, res) => {
     console.error("Error fetching RSS feed:", error);
     res.status(500).send("Error fetching RSS feed");
   }
+  */
 });
 
 app.listen(PORT, () =>
