@@ -6,6 +6,17 @@ import cors from "cors";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Catch-all route handler for 404 errors
+app.use((req, res, next) => {
+  res.status(404).send("404 - Not Found");
+});
+
+// Middleware that logs every request
+app.use((req, res, next) => {
+  console.log(`Incoming request: ${req.method} ${req.url}`);
+  next();
+});
+
 // Enable CORS for all routes
 app.use(cors());
 
