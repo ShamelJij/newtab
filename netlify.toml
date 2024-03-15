@@ -3,9 +3,6 @@
   functions = "functions"
   command = "npm run build"
 
-[build.environment]
-  API_URL = "http://localhost:3000"
-
 [dev]
   command = "npm run dev"
   targetPort = 3000
