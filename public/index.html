@@ -2,16 +2,26 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Node.js Full Stack App</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Head contents (omitted for brevity) -->
 </head>
 
 <body>
-    <h1>Node.js Full Stack Application</h1>
-    <button id="fetchDataBtn">Fetch Data from Backend</button>
-    <div id="dataContainer"></div>
+    <h1>RSS Feed Data</h1>
+    <button id="fetchDataBtn">Fetch RSS Data</button>
+    <table id="rssDataTable">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Publication Date</th>
+                <th>Description</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data rows will be added here -->
+        </tbody>
+    </table>
+    <!-- Remaining body content -->
     <script src="script.js"></script>
 </body>
 

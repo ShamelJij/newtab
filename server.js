@@ -1,22 +1,27 @@
-const express = require("express");
-const path = require("path");
+import express from "express";
+import fetch from "node-fetch";
+import { parseStringPromise } from "xml2js";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Serve static files from the 'public' directory
 app.use(express.static("public"));
 
-// API endpoint
-app.get("/api/data", (req, res) => {
-  // Assume we're fetching this data from MongoDB
-  const data = { message: "Hello from the backend!" };
-  res.json(data);
-});
-
-// Catch-all handler for all other routes (not found above),
-// send back index.html to allow client-side routing
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/index.html"));
+// Endpoint to get RSS feed data
+app.get("/api/rss", async (req, res) => {
+  try {
+    const response = await fetch(
+      "https://militarywatchmagazine.com/feeds/headlines.xml"
+    );
+    const xmlData = await response.text();
+    const jsonData = await parseStringPromise(xmlData, {
+      mergeAttrs: true,
+      explicitArray: false,
+    });
+    res.json(jsonData.rss.channel);
+  } catch (error) {
+    console.error("Error fetching RSS feed:", error);
+    res.status(500).send("Error fetching RSS feed");
+  }
 });
 
 app.listen(PORT, () =>
