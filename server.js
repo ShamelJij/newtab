@@ -13,6 +13,22 @@ app.get("/api/rss", async (req, res) => {
       "https://militarywatchmagazine.com/feeds/headlines.xml"
     );
     const xmlData = await response.text();
+    console.log("XML Data:", xmlData); // Log XML data for debugging
+    const jsonData = await parseStringPromise(xmlData, {
+      mergeAttrs: true,
+      explicitArray: false,
+    });
+    res.json(jsonData.rss.channel);
+  } catch (error) {
+    console.error("Error fetching or parsing RSS feed:", error);
+    res.status(500).send("Error fetching or parsing RSS feed");
+  }
+
+  try {
+    const response = await fetch(
+      "https://militarywatchmagazine.com/feeds/headlines.xml"
+    );
+    const xmlData = await response.text();
     const jsonData = await parseStringPromise(xmlData, {
       mergeAttrs: true,
       explicitArray: false,
