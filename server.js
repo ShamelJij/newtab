@@ -1,8 +1,8 @@
 const apiUrl = process.env.API_URL;
 import express from "express";
+import cors from "cors";
 import fetch from "node-fetch";
 import { parseStringPromise } from "xml2js";
-import cors from "cors";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -22,7 +22,7 @@ app.use(cors());
 
 // Set the 'x-content-type-options' header for all routes
 app.use((req, res, next) => {
-  res.setHeader("X-Content-Type-Options", "*");
+  res.setHeader("X-Content-Type-Options", "nosniff");
   next();
 });
 
