@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node server.js"
+    "start": "node server.js",
+    "build": "echo 'Build process complete'",
+    "dev": "node server.js"
   },
   "keywords": [],
   "type": "module",
