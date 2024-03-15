@@ -30,7 +30,6 @@ app.use((req, res, next) => {
 
 app.use(express.static("public"));
 app.get("/api/rss", async (req, res) => {
-  /*
   try {
     const response = await fetch(
       "https://militarywatchmagazine.com/feeds/headlines.xml"
@@ -61,6 +60,7 @@ app.get("/api/rss", async (req, res) => {
 });
 
 // Endpoint to get RSS feed data
+/*
 app.get("/api/rss", async (req, res) => {
 
   try {
@@ -78,7 +78,6 @@ app.get("/api/rss", async (req, res) => {
     console.error("Error fetching or parsing RSS feed:", error);
     res.status(500).send("Error fetching or parsing RSS feed");
   }
-  */
   try {
     const response = await fetch(
       "https://militarywatchmagazine.com/feeds/headlines.xml"
@@ -94,6 +93,7 @@ app.get("/api/rss", async (req, res) => {
     res.status(500).send("Error fetching RSS feed");
   }
 });
+  */
 
 app.listen(PORT, () =>
   console.log(`Server running on http://localhost:${PORT}`)
