@@ -34,11 +34,11 @@
         document.getElementById('showHeadlinesBtn').addEventListener('click', fetchHeadlines);
 
         function fetchHeadlines() {
-            fetch('https://militarywatchmagazine.com/feeds/headlines.xml')
-                .then(response => response.text())
+            fetch('/.netlify/functions/fetchHeadlines') // Request to your serverless function endpoint
+                .then(response => response.json())
                 .then(data => {
-                    const parser = new DOMParser();
-                    const xmlDoc = parser.parseFromString(data, 'text/xml');
+                    const xmlData = data.xmlData;
+                    // Process the XML data as needed
                     const items = xmlDoc.querySelectorAll('item');
                     const tableBody = document.getElementById('headlineTableBody');
 
@@ -60,12 +60,46 @@
                         tableBody.innerHTML += row;
                     });
 
-                    document.getElementById('headlineTable').style.display = 'table';
                 })
                 .catch(error => {
                     console.error('Error fetching headlines:', error);
                 });
         }
+        /*
+                function fetchHeadlines() {
+                    fetch('https://militarywatchmagazine.com/feeds/headlines.xml')
+                        .then(response => response.text())
+                        .then(data => {
+                            const parser = new DOMParser();
+                            const xmlDoc = parser.parseFromString(data, 'text/xml');
+                            const items = xmlDoc.querySelectorAll('item');
+                            const tableBody = document.getElementById('headlineTableBody');
+        
+                            tableBody.innerHTML = '';
+        
+                            items.forEach(item => {
+                                const title = item.querySelector('title').textContent;
+                                const description = item.querySelector('description').textContent;
+                                const link = item.querySelector('link').textContent;
+        
+                                const row = `
+                      <tr>
+                        <td>${title}</td>
+                        <td>${description}</td>
+                        <td><a href="${link}" target="_blank">${link}</a></td>
+                      </tr>
+                    `;
+        
+                                tableBody.innerHTML += row;
+                            });
+        
+                            document.getElementById('headlineTable').style.display = 'table';
+                        })
+                        .catch(error => {
+                            console.error('Error fetching headlines:', error);
+                        });
+                }
+                */
     </script>
 </body>
 
