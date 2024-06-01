@@ -10,10 +10,12 @@ const redditNewsTableID = "reddit-table-container";
 function fetchAndDisplayXML(targetUrl, tableID) {
   const corsProxyUrl = "https://cors-anywhere.herokuapp.com/";
 
-  fetch(corsProxyUrl +  targetUrl, {
+  fetch(corsProxyUrl + targetUrl, {
     headers: {
-      "x-requested-with": "XMLHTTPREQUEST",
-      "Content-Type": "text/xml",
+      method: "GET",
+      withCredentials: true,
+      crossorigin: true,
+      mode: "no-cors",
     },
   })
     .then((response) => response.text())
