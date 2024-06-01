@@ -1,106 +1,109 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Military Headlines</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        #headlineTable {
-            display: none;
-        }
-    </style>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/yeti/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="styles.css">
+  <title>new tab</title>
 </head>
 
 <body>
-    <div class="container mt-5">
-        <button id="showHeadlinesBtn" class="btn btn-primary mb-3">Show Headlines</button>
-        <table id="headlineTable" class="table">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Link</th>
-                </tr>
-            </thead>
-            <tbody id="headlineTableBody">
-                <!-- Table content will be inserted here -->
-            </tbody>
-        </table>
+  <!-- Main navigation -->
+  <!--Main Layout-->
+  <main>
+    <div class="container">
+      <h1 class="mx-auto bg-dark text-light text-center rounded">Hello, Kya!</h1>
+      <div class="jumbotron bg text-center">
+        <form class="form-inline d-flex justify-content-center" action="https://www.google.com/search" method="GET"
+          target="_blank">
+          <input class="form-control mr-2 my-2" id="searchInput" placeholder="search" type="text" name="q">
+          <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+      </div>
+      <!--Grid row-->
+      <div class="row">
+        <!--Grid column-->
+        <div class="the-main col-md-6">
+          <div id="militaryWatchMagazine-table-container"></div>
+        </div>
+        <div class="col-md-6 the-main">
+          <div id="reddit-table-container"></div>
+        </div>
+        <div class="col-md-4 the-main">
+          <p>You are not responsible for what other people expect of you. If they expect too much from you, it is their
+            fault, not yours.</p>
+        </div>
+        <div class="col-md-4 the-main">
+          <dl>
+            <dd>- How much do you value life?</dd>
+            <dd>
+              - Sixty-four.
+            </dd>
+            <dd>
+              - Why did you say sixty-four?
+            </dd>
+            <dd>
+              - How do you suppose you measure the value of life?
+            </dd>
+            <dd>
+              - No! I mean, why did you say sixty-four and not seventy-three, for example?
+            </dd>
+            <dd>
+              - If I had said "seventy-three". You'd be asking me the same question!</dd>
+          </dl>
+        </div>
+        <div class="col-md-4 the-main">
+          <p>The masterpiece of my pranks was an incident in a student dormitory. One day I woke up
+            I woke up very early, around 5:00 a.m., and couldn't go back to sleep. So I
+            went downstairs from my bedroom and found a note hanging on the strings,
+            which said: "Door, door, who stole the door?" I looked around and I saw
+            someone had taken the door off its hinges and put a sign in its place that said:
+            "Please close the door," a sign that usually hung on the
+            the missing door.
+            I immediately guessed what this was all about. There was a guy named
+            Pete Bernays and two others. If you wandered into their room looking for something.
+            or to ask them how they'd solved a problem, you'd always hear these guys moaning.
+            "Please close the door!"
+            Someone undoubtedly got fed up with this and the door was taken away.
+            I should say there were two doors in this room, the way it was
+            the way it was built. So I had an idea: I took the other door off its hinges,
+            I took it downstairs and hid it in the basement behind the fuel oil tank. Then I quietly
+            went up to my room and went to bed.
+            Later in the morning I pretended to wake up, and went downstairs a little
+            a little late downstairs. The other students were fidgeting about, and Pete and his friends were
+            extremely upset: the doors to their room were off, and they had to study, etc., etc.
+            et cetera, et cetera. As I was coming down the stairs, they asked, "Feynman, did you
+            got the doors?"
+            - Um, yes," I replied. - I took the door. You see the scratches on my
+            on my fingers, I got them from pulling down the basement door when my hands were scraping against the
+            the wall.</p>
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
     </div>
+  </main>
+  <!--Main Layout-->
 
-    <script>
-        document.getElementById('showHeadlinesBtn').addEventListener('click', fetchHeadlines);
+  <!-- javascript -->
+  <script src="app.js"></script>
+  <!-- Option 2: jQuery, Popper.js, and Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+    integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+    crossorigin="anonymous"></script>
 
-        function fetchHeadlines() {
-            fetch('https://militarywatchmagazine.com/feed/headlines.rss') // Request to your serverless function endpoint
-                .then(response => response.json())
-                .then(data => {
-                    const xmlData = data.xmlData;
-                    // Process the XML data as needed
-                    const items = xmlDoc.querySelectorAll('item');
-                    const tableBody = document.getElementById('headlineTableBody');
-
-                    tableBody.innerHTML = '';
-
-                    items.forEach(item => {
-                        const title = item.querySelector('title').textContent;
-                        const description = item.querySelector('description').textContent;
-                        const link = item.querySelector('link').textContent;
-
-                        const row = `
-              <tr>
-                <td>${title}</td>
-                <td>${description}</td>
-                <td><a href="${link}" target="_blank">${link}</a></td>
-              </tr>
-            `;
-
-                        tableBody.innerHTML += row;
-                    });
-
-                })
-                .catch(error => {
-                    console.error('Error fetching headlines:', error);
-                });
-        }
-        /*
-                function fetchHeadlines() {
-                    fetch('https://militarywatchmagazine.com/feeds/headlines.xml')
-                        .then(response => response.text())
-                        .then(data => {
-                            const parser = new DOMParser();
-                            const xmlDoc = parser.parseFromString(data, 'text/xml');
-                            const items = xmlDoc.querySelectorAll('item');
-                            const tableBody = document.getElementById('headlineTableBody');
-
-                            tableBody.innerHTML = '';
-
-                            items.forEach(item => {
-                                const title = item.querySelector('title').textContent;
-                                const description = item.querySelector('description').textContent;
-                                const link = item.querySelector('link').textContent;
-
-                                const row = `
-                      <tr>
-                        <td>${title}</td>
-                        <td>${description}</td>
-                        <td><a href="${link}" target="_blank">${link}</a></td>
-                      </tr>
-                    `;
-
-                                tableBody.innerHTML += row;
-                            });
-
-                            document.getElementById('headlineTable').style.display = 'table';
-                        })
-                        .catch(error => {
-                            console.error('Error fetching headlines:', error);
-                        });
-                }
-                */
-    </script>
 </body>
 
 </html>

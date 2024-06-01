@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Military Headlines</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #headlineTable {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <button id="showHeadlinesBtn" class="btn btn-primary mb-3">Show Headlines</button>
+        <table id="headlineTable" class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody id="headlineTableBody">
+                <!-- Table content will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById('showHeadlinesBtn').addEventListener('click', fetchHeadlines);
+
+        function fetchHeadlines() {
+            fetch('https://militarywatchmagazine.com/feed/headlines.rss') // Request to your serverless function endpoint
+                .then(response => response.json())
+                .then(data => {
+                    const xmlData = data.xmlData;
+                    // Process the XML data as needed
+                    const items = xmlDoc.querySelectorAll('item');
+                    const tableBody = document.getElementById('headlineTableBody');
+
+                    tableBody.innerHTML = '';
+
+                    items.forEach(item => {
+                        const title = item.querySelector('title').textContent;
+                        const description = item.querySelector('description').textContent;
+                        const link = item.querySelector('link').textContent;
+
+                        const row = `
+              <tr>
+                <td>${title}</td>
+                <td>${description}</td>
+                <td><a href="${link}" target="_blank">${link}</a></td>
+              </tr>
+            `;
+
+                        tableBody.innerHTML += row;
+                    });
+
+                })
+                .catch(error => {
+                    console.error('Error fetching headlines:', error);
+                });
+        }
+        /*
+                function fetchHeadlines() {
+                    fetch('https://militarywatchmagazine.com/feeds/headlines.xml')
+                        .then(response => response.text())
+                        .then(data => {
+                            const parser = new DOMParser();
+                            const xmlDoc = parser.parseFromString(data, 'text/xml');
+                            const items = xmlDoc.querySelectorAll('item');
+                            const tableBody = document.getElementById('headlineTableBody');
+
+                            tableBody.innerHTML = '';
+
+                            items.forEach(item => {
+                                const title = item.querySelector('title').textContent;
+                                const description = item.querySelector('description').textContent;
+                                const link = item.querySelector('link').textContent;
+
+                                const row = `
+                      <tr>
+                        <td>${title}</td>
+                        <td>${description}</td>
+                        <td><a href="${link}" target="_blank">${link}</a></td>
+                      </tr>
+                    `;
+
+                                tableBody.innerHTML += row;
+                            });
+
+                            document.getElementById('headlineTable').style.display = 'table';
+                        })
+                        .catch(error => {
+                            console.error('Error fetching headlines:', error);
+                        });
+                }
+                */
+    </script>
+</body>
+
+</html>
