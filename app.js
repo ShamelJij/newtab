@@ -13,9 +13,12 @@ function fetchAndDisplayXML(targetUrl, tableID) {
   fetch(targetUrl, {
     headers: {
       method: "GET",
-      withCredentials: true,
-      crossorigin: true,
       mode: "no-cors",
+credentials: "include", // Include credentials if needed
+    headers: {
+      "Content-Type": "text/xml",
+      "X-Requested-With": "XMLHttpRequest",
+    },
     },
   })
     .then((response) => response.text())
