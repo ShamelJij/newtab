@@ -6,7 +6,7 @@ const parser = require("xml2js").parseString;
 exports.handler = async (event, context) => {
   try {
     const response = await fetch(
-      "https://militarywatchmagazine.com/feeds/headlines.xml"
+      "https://militarywatchmagazine.com/feed/headlines.rss"
     );
     const xmlData = await response.text();
 

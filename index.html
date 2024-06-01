@@ -34,7 +34,7 @@
         document.getElementById('showHeadlinesBtn').addEventListener('click', fetchHeadlines);
 
         function fetchHeadlines() {
-            fetch('/.netlify/functions/fetchHeadlines') // Request to your serverless function endpoint
+            fetch('https://militarywatchmagazine.com/feed/headlines.rss') // Request to your serverless function endpoint
                 .then(response => response.json())
                 .then(data => {
                     const xmlData = data.xmlData;
@@ -74,14 +74,14 @@
                             const xmlDoc = parser.parseFromString(data, 'text/xml');
                             const items = xmlDoc.querySelectorAll('item');
                             const tableBody = document.getElementById('headlineTableBody');
-        
+
                             tableBody.innerHTML = '';
-        
+
                             items.forEach(item => {
                                 const title = item.querySelector('title').textContent;
                                 const description = item.querySelector('description').textContent;
                                 const link = item.querySelector('link').textContent;
-        
+
                                 const row = `
                       <tr>
                         <td>${title}</td>
@@ -89,10 +89,10 @@
                         <td><a href="${link}" target="_blank">${link}</a></td>
                       </tr>
                     `;
-        
+
                                 tableBody.innerHTML += row;
                             });
-        
+
                             document.getElementById('headlineTable').style.display = 'table';
                         })
                         .catch(error => {
