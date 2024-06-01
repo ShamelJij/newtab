@@ -1,5 +1,5 @@
 const militaryWatchMagazine =
-  "https://militarywatchmagazine.com/feeds/headlines.xml";
+  "https://militarywatchmagazine.com/feed/headlines.rss";
 const militaryWatchMagazineTableID = "militaryWatchMagazine-table-container";
 const defenseBlog = "https://defence-blog.com/feed/";
 
