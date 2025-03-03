@@ -4,7 +4,7 @@ body, html {
 
 .bg {
   /* Random picture background */
-  background-image: url("https://source.unsplash.com/random/1920x1080/?landscape,water,nature");
+  background-image: url("https://picsum.photos/1900/800");
   height: 420px;
   background-position: center;
   background-repeat: no-repeat;
