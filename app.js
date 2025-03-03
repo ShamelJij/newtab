@@ -1,7 +1,9 @@
 // URLs for the APIs
 const militaryWatchMagazine = "https://militarywatchmagazine.com/feed/headlines.rss";
 const militaryWatchMagazineTableID = "militaryWatchMagazine-table-container";
+
 const bbcNews = "http://feeds.bbci.co.uk/news/rss.xml";
+const bbcNewsTableID = "bbc-table-container";
 
 const redditNews = "https://www.reddit.com/r/worldnews/.rss";
 const redditNewsTableID = "reddit-table-container";
