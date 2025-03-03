@@ -1,69 +1,3 @@
-// Function to fetch and display XML data using Netlify Functions
-function fetchAndDisplayXML(targetUrl, tableID) {
-  fetch(`/.netlify/functions/fetchNews?url=${encodeURIComponent(targetUrl)}`)
-    .then((response) => response.text())
-    .then((data) => {
-      console.log("Raw API Response:", data);
-
-      // Check if the response is XML
-      if (data.startsWith("<?xml") || data.startsWith("<rss")) {
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(data, "text/xml");
-        displayTable(xmlDoc, tableID);
-      } else {
-        console.error("Invalid XML response:", data);
-        document.getElementById(tableID).innerHTML = "<p>Error: Invalid data received from the API.</p>";
-      }
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
-}
-
-// Function to create and display a table from XML data
-function displayTable(xmlDoc, tableID) {
-  const items = xmlDoc.querySelectorAll("item");
-  let tableHTML = `
-    <table class='table table-striped'>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-  `;
-
-  // Loop through the first 5 items
-  for (let i = 0; i < Math.min(5, items.length); i++) {
-    const title = items[i].querySelector("title").textContent;
-    const description = items[i].querySelector("description").textContent;
-
-    // Add a row to the table
-    tableHTML += `
-      <tr>
-        <td>${title}</td>
-        <td>${description}</td>
-      </tr>
-    `;
-  }
-
-  tableHTML += `
-      </tbody>
-    </table>
-  `;
-
-  // Insert the table into the specified container
-  document.getElementById(tableID).innerHTML = tableHTML;
-}
-
-// URLs for the APIs
-const bbcNews = "http://feeds.bbci.co.uk/news/rss.xml";
-const bbcNewsTableID = "militaryWatchMagazine-table-container"; // Replace with your container ID
-
-// Fetch and display data for BBC News
-fetchAndDisplayXML(bbcNews, bbcNewsTableID);
-
 async function getMMNews() {
   const url = "/.netlify/functions/fetchMMNews";
 
@@ -71,14 +5,28 @@ async function getMMNews() {
     const response = await fetch(url);
     const data = await response.text();
 
+    console.log("Raw API Response:", data);
+
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(data, "text/xml");
 
-    const titles = xmlDoc.querySelectorAll("title");
+    const parseError = xmlDoc.querySelector("parsererror");
+    if (parseError) {
+      console.error("XML Parsing Error:", parseError.textContent);
+      return;
+    }
+
+    const items = xmlDoc.querySelectorAll("item");
 
     let output = "\t {{MilitaryWatchMagazine}} \n";
-    titles.forEach((title, index) => {
-      output += `${(index + 1).toString().padStart(2, "0")}. ${title.textContent}\n`;
+    items.forEach((item, index) => {
+      const title = item.querySelector("title").textContent;
+      const description = item.querySelector("description").textContent;
+      const link = item.querySelector("link").textContent;
+
+      output += `${(index + 1).toString().padStart(2, "0")}. ${title}\n`;
+      output += `   Description: ${description}\n`;
+      output += `   Link: ${link}\n\n`;
     });
 
     console.log(output);
