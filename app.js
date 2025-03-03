@@ -63,3 +63,33 @@ const bbcNewsTableID = "militaryWatchMagazine-table-container"; // Replace with 
 
 // Fetch and display data for BBC News
 fetchAndDisplayXML(bbcNews, bbcNewsTableID);
+
+async function getMMNews() {
+  const url = "/.netlify/functions/fetchMMNews";
+
+  try {
+    const response = await fetch(url);
+    const data = await response.text();
+
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(data, "text/xml");
+
+    const titles = xmlDoc.querySelectorAll("title");
+
+    let output = "\t {{MilitaryWatchMagazine}} \n";
+    titles.forEach((title, index) => {
+      output += `${(index + 1).toString().padStart(2, "0")}. ${title.textContent}\n`;
+    });
+
+    console.log(output);
+
+    const container = document.getElementById("mmnews-container");
+    if (container) {
+      container.textContent = output;
+    }
+  } catch (error) {
+    console.error("Error fetching or parsing data:", error);
+  }
+}
+
+getMMNews();
