@@ -9,7 +9,7 @@ const redditTableID = "reddit-table-container";
 const bbcTableID = "bbc-table-container";
 
 // Function to fetch and display XML data
-async function fetchAndDisplayXML(targetUrl, tableID) {
+async function fetchAndDisplayXML(targetUrl, tableID, isReddit = false) {
   try {
     const response = await fetch(`/.netlify/functions/fetchNews?url=${encodeURIComponent(targetUrl)}`);
     const data = await response.text();
@@ -25,7 +25,14 @@ async function fetchAndDisplayXML(targetUrl, tableID) {
       return;
     }
 
-    const items = xmlDoc.querySelectorAll("item");
+    let items;
+    if (isReddit) {
+      // Parse Atom XML for Reddit
+      items = xmlDoc.querySelectorAll("entry");
+    } else {
+      // Parse RSS XML for other feeds
+      items = xmlDoc.querySelectorAll("item");
+    }
 
     let tableHTML = `
       <table class='table table-striped'>
@@ -40,7 +47,9 @@ async function fetchAndDisplayXML(targetUrl, tableID) {
 
     for (let i = 0; i < Math.min(5, items.length); i++) {
       const title = items[i].querySelector("title").textContent;
-      const description = items[i].querySelector("description").textContent;
+      const description = isReddit
+        ? items[i].querySelector("content").textContent
+        : items[i].querySelector("description").textContent;
 
       tableHTML += `
         <tr>
@@ -63,5 +72,5 @@ async function fetchAndDisplayXML(targetUrl, tableID) {
 
 // Fetch and display data for all feeds
 fetchAndDisplayXML(militaryWatchMagazineUrl, militaryWatchMagazineTableID);
-fetchAndDisplayXML(redditNewsUrl, redditTableID);
+fetchAndDisplayXML(redditNewsUrl, redditTableID, true); // Set isReddit to true for Reddit News
 fetchAndDisplayXML(bbcNewsUrl, bbcTableID);
