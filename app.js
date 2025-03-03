@@ -1,6 +1,7 @@
 // URLs for the APIs
 const militaryWatchMagazine = "https://militarywatchmagazine.com/feed/headlines.rss";
 const militaryWatchMagazineTableID = "militaryWatchMagazine-table-container";
+const bbcNews = "http://feeds.bbci.co.uk/news/rss.xml";
 
 const redditNews = "https://www.reddit.com/r/worldnews/.rss";
 const redditNewsTableID = "reddit-table-container";
@@ -51,3 +52,4 @@ function displayTable(xmlDoc, tableID) {
 // Fetch and display data for both APIs
 fetchAndDisplayXML(militaryWatchMagazine, militaryWatchMagazineTableID);
 fetchAndDisplayXML(redditNews, redditNewsTableID);
+fetchAndDisplayXML(bbcNews, bbcNewsTableID);
