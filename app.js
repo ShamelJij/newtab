@@ -14,6 +14,7 @@ function fetchAndDisplayXML(targetUrl, tableID) {
       // Parse the XML data
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(data, "text/xml");
+      console.log(xmlDoc);
 
       // Display the data in a table
       displayTable(xmlDoc, tableID);
