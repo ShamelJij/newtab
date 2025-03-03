@@ -1,10 +1,14 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
+body, html {
+  height: 100%;
 }
 
-.container {
-  padding: 20px;
+.bg {
+  /* Random picture background */
+  background-image: url("https://source.unsplash.com/random/1920x1080/?landscape,water,nature");
+  height: 420px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .the-main {
@@ -25,4 +29,13 @@ h1, h2 {
 
 .table th, .table td {
   vertical-align: middle;
+}
+
+/* Search bar styles */
+.form-inline {
+  margin-top: 20px;
+}
+
+.form-control {
+  width: 300px;
 }

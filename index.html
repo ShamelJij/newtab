@@ -10,31 +10,40 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1 class="text-center my-4">News Aggregator</h1>
-
-    <!-- Military Watch Magazine Table -->
-    <div class="row">
-      <div class="col-md-6 the-main">
-        <h2>Military Watch Magazine</h2>
-        <div id="militaryWatchMagazine-table-container"></div>
+  <!-- Main Layout -->
+  <main>
+    <div class="container">
+      <!-- Search Bar -->
+      <div class="jumbotron bg text-center">
+        <form class="form-inline d-flex justify-content-center" action="https://www.google.com/search" method="GET" target="_blank">
+          <input class="form-control mr-2 my-2" id="searchInput" placeholder="Search" type="text" name="q">
+          <button class="btn btn-primary" type="submit">Search</button>
+        </form>
       </div>
 
-      <!-- Reddit News Table -->
-      <div class="col-md-6 the-main">
-        <h2>Reddit News</h2>
-        <div id="reddit-table-container"></div>
+      <!-- Military Watch Magazine Table -->
+      <div class="row">
+        <div class="col-md-6 the-main">
+          <h2>Military Watch Magazine</h2>
+          <div id="militaryWatchMagazine-table-container"></div>
+        </div>
+
+        <!-- Reddit News Table -->
+        <div class="col-md-6 the-main">
+          <h2>Reddit News</h2>
+          <div id="reddit-table-container"></div>
+        </div>
+      </div>
+
+      <!-- BBC News Table -->
+      <div class="row">
+        <div class="col-md-12 the-main">
+          <h2>BBC News</h2>
+          <div id="bbc-table-container"></div>
+        </div>
       </div>
     </div>
-
-    <!-- BBC News Table -->
-    <div class="row">
-      <div class="col-md-12 the-main">
-        <h2>BBC News</h2>
-        <div id="bbc-table-container"></div>
-      </div>
-    </div>
-  </div>
+  </main>
 
   <!-- Bootstrap JS and dependencies -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
