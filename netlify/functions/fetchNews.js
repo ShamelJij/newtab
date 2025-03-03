@@ -1,7 +1,14 @@
 const axios = require("axios");
 
 exports.handler = async (event, context) => {
-  const url = "https://militarywatchmagazine.com/feeds/headlines.xml";
+  const { url } = event.queryStringParameters;
+
+  if (!url) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: "URL parameter is required" }),
+    };
+  }
 
   try {
     const response = await axios.get(url);

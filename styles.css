@@ -1,57 +1,28 @@
-body,
-html {
-  height: 100%;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
 }
-.bg {
-  /* The image used */
-  background-image: url("https://picsum.photos/1200/800");
 
-  /* Full height */
-  height: 420px;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.container {
+  padding: 20px;
 }
+
 .the-main {
   background: rgba(255, 255, 255, 0.8);
   border-radius: 15px;
   padding: 20px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-* {
-  box-sizing: border-box;
+h1, h2 {
+  color: #343a40;
 }
 
-body {
-  font: 16px Arial;
+.table {
+  margin-top: 20px;
 }
 
-/*the container must be positioned relative:*/
-.autocomplete {
-  position: relative;
-  display: inline-block;
-}
-
-input {
-  border: 1px solid transparent;
-  background-color: #f1f1f1;
-  padding: 10px;
-  font-size: 16px;
-}
-
-input[type="text"] {
-  background-color: #f1f1f1;
-  width: 100%;
-}
-
-input[type="submit"] {
-  background-color: DodgerBlue;
-  color: #fff;
-  cursor: pointer;
+.table th, .table td {
+  vertical-align: middle;
 }
