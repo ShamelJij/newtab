@@ -45,7 +45,11 @@ async function fetchAndDisplayXML(targetUrl, tableID, isReddit = false) {
         <tbody>
     `;
 
-    for (let i = 0; i < Math.min(5, items.length); i++) {
+    // Start from index 1 for Reddit to skip the first item
+    const startIndex = isReddit ? 1 : 0;
+    const endIndex = isReddit ? 11 : 5; // Show 10 items for Reddit, 5 for others
+
+    for (let i = startIndex; i < Math.min(endIndex, items.length); i++) {
       const title = items[i].querySelector("title").textContent;
       const description = isReddit
         ? items[i].querySelector("content").textContent
@@ -71,6 +75,6 @@ async function fetchAndDisplayXML(targetUrl, tableID, isReddit = false) {
 }
 
 // Fetch and display data for all feeds
-fetchAndDisplayXML(militaryWatchMagazineUrl, militaryWatchMagazineTableID);
-fetchAndDisplayXML(redditNewsUrl, redditTableID, true); // Set isReddit to true for Reddit News
-fetchAndDisplayXML(bbcNewsUrl, bbcTableID);
+fetchAndDisplayXML(redditNewsUrl, redditTableID, true); // Reddit News (skip first item, show 10 items)
+fetchAndDisplayXML(militaryWatchMagazineUrl, militaryWatchMagazineTableID); // Military Watch Magazine
+fetchAndDisplayXML(bbcNewsUrl, bbcTableID); // BBC News
