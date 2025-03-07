@@ -47,7 +47,7 @@ async function fetchAndDisplayXML(targetUrl, tableID, isReddit = false) {
 
     // Start from index 1 for Reddit to skip the first item
     const startIndex = isReddit ? 1 : 0;
-    const endIndex = isReddit ? 11 : 5; // Show 10 items for Reddit, 5 for others
+    const endIndex = isReddit ? 11 : 10; // Show 10 items for Reddit, 5 for others
 
     for (let i = startIndex; i < Math.min(endIndex, items.length); i++) {
       const title = items[i].querySelector("title").textContent;
